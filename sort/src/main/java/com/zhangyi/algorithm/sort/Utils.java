@@ -3,7 +3,6 @@ package com.zhangyi.algorithm.sort;
 import com.alibaba.fastjson.JSON;
 
 /**
- * @author 张义 reed.zy@alibaba-inc.com
  */
 public class Utils {
     public static <T> void exchange(T[] a, int i, int indexOfMin) {
