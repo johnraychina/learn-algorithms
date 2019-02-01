@@ -5,10 +5,20 @@ import com.alibaba.fastjson.JSON;
 /**
  */
 public class Utils {
-    public static <T> void exchange(T[] a, int i, int indexOfMin) {
-        T temp = a[i];
-        a[i] = a[indexOfMin];
-        a[indexOfMin] = temp;
+
+    public static <T extends Comparable> boolean compareAndExchange(T[] array, int left, int right) {
+        if (array[left].compareTo(array[right]) > 0) {
+            exchange(array, left, right);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static <T> void exchange(T[] a, int x, int y) {
+        T temp = a[x];
+        a[x] = a[y];
+        a[y] = temp;
     }
 
     public static <T> void show(T[] array) {
