@@ -16,7 +16,7 @@ import static com.zhangyi.algorithm.sort.Utils.show;
 public class Selection {
 
 
-    public static <T extends Comparable> void sort(T[] array) {
+    public static <T extends Comparable<T>> void sort(T[] array) {
 
         show(array);
 

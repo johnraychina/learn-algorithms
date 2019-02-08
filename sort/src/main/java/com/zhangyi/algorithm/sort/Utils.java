@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSON;
  */
 public class Utils {
 
-    public static <T extends Comparable> boolean compareAndExchange(T[] array, int left, int right) {
+    public static <T extends Comparable<T>> boolean compareAndExchange(T[] array, int left, int right) {
         if (array[left].compareTo(array[right]) > 0) {
             exchange(array, left, right);
             return true;
@@ -21,7 +21,7 @@ public class Utils {
         a[y] = temp;
     }
 
-    public static <T> void show(T[] array) {
-        System.out.println(JSON.toJSONString(array));
+    public static <T> void show(Object object) {
+        System.out.println(JSON.toJSONString(object));
     }
 }
