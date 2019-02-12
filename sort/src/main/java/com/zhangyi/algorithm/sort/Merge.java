@@ -1,8 +1,5 @@
 package com.zhangyi.algorithm.sort;
 
-import java.util.Arrays;
-
-import static com.zhangyi.algorithm.sort.Utils.compareAndExchange;
 import static com.zhangyi.algorithm.sort.Utils.show;
 
 /**
@@ -19,7 +16,7 @@ import static com.zhangyi.algorithm.sort.Utils.show;
  * 问题：递归会使得堆栈层次太深，大的数组会Stack Overflow
  * 优化：通过正向for循环计算拆分子数组
  *
- * @author 张义 reed.zy@alibaba-inc.com
+ * @author 张义 johnraychina@163.com
  */
 public class Merge {
 
@@ -38,56 +35,59 @@ public class Merge {
     }
 
     public static void sort(Comparable[] array, int lo, int hi) {
-        if (lo == hi) {
+        if (hi <= lo) {
             return;
         }
 
-        if ((lo + 1) == hi) {
-            compareAndExchange(array, lo, hi);
-            show(array);
-            return;
-        } else {
+        int mid = (lo + hi) / 2;
 
-            int mid = (lo + hi) / 2;
-            sort(array, lo, mid);
-            sort(array, mid + 1, hi);
+        sort(array, lo, mid);
+        sort(array, mid + 1, hi);
+        merge(array, lo, mid, hi);
+        show(array);
 
-            merge(array, lo, mid, hi);
-            show(array);
-        }
     }
 
     public static void merge(Comparable[] array, int lo, int mid, int hi) {
         int i = lo; //i: left side index
         int j = mid + 1; //j: right side index
-        int k = lo;
 
-
-        for (int l = lo; l <= hi; l++) {
-            aux[l] = array[l];
+        for (int k = lo; k <= hi; k++) {
+            aux[k] = array[k];
         }
 
-        while (true) {
+        //int k = lo;
+        //while (true) {
+        //    if (i > mid) {
+        //        if (j > hi) {
+        //            break;
+        //        } else {
+        //            array[k++] = aux[j++];
+        //        }
+        //    } else {
+        //        if (j > hi) {
+        //            array[k++] = aux[i++];
+        //        } else {
+        //            if (aux[i].compareTo(aux[j]) > 0) {
+        //                array[k++] = aux[j++];
+        //            } else {
+        //                array[k++] = aux[i++];
+        //            }
+        //        }
+        //    }
+        //}
 
+        for (int k = lo; k <= hi; k++) {
             if (i > mid) {
-                if (j > hi) {
-                    break;
-                } else {
-                    array[k++] = aux[j++];
-                }
+                array[k] = aux[j++];
+            } else if (j > hi) {
+                array[k] = aux[i++];
+            } else if (array[i].compareTo(array[j]) >= 0) {
+                array[k] = aux[j++];
             } else {
-                if (j > hi) {
-                    array[k++] = aux[i++];
-                } else {
-                    if (aux[i].compareTo(aux[j]) > 0) {
-                        array[k++] = aux[j++];
-                    } else {
-                        array[k++] = aux[i++];
-                    }
-                }
+                array[k] = aux[i++];
             }
         }
-
 
     }
 

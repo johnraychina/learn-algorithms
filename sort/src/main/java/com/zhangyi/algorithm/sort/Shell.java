@@ -15,7 +15,7 @@ import static com.zhangyi.algorithm.sort.Utils.show;
  * 对于非常乱的数据非常有用。
  * </p>
  *
- * @author 张义 reed.zy@alibaba-inc.com
+ * @author 张义 johnraychina@163.com
  */
 public class Shell {
 

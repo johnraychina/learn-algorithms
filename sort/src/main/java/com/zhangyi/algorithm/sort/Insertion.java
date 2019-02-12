@@ -23,7 +23,7 @@ import static com.zhangyi.algorithm.sort.Utils.show;
  * 最坏的情况，比较次数：N^2/2
  * 最坏的情况，交换次数：N^2/2
  *
- * @author 张义 reed.zy@alibaba-inc.com
+ * @author 张义 johnraychina@163.com
  */
 public class Insertion {
 
