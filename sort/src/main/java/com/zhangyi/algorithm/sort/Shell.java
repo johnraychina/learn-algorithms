@@ -1,6 +1,6 @@
 package com.zhangyi.algorithm.sort;
 
-import static com.zhangyi.algorithm.sort.Utils.compareAndExchange;
+import static com.zhangyi.algorithm.sort.Utils.exchangeIfBigger;
 import static com.zhangyi.algorithm.sort.Utils.exchange;
 import static com.zhangyi.algorithm.sort.Utils.show;
 
@@ -55,7 +55,7 @@ public class Shell {
             for (int i = 0; i < n; i++) {
 
                 for (int j = i; j + delta < n && array[j].compareTo(array[j+delta]) > 0; j += delta) {
-                    compareAndExchange(array, j, j + delta);
+                    exchangeIfBigger(array, j, j + delta);
                     show(array);
                 }
             }

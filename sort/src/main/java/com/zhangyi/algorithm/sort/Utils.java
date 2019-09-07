@@ -6,13 +6,25 @@ import com.alibaba.fastjson.JSON;
  */
 public class Utils {
 
-    public static <T extends Comparable<T>> boolean compareAndExchange(T[] array, int left, int right) {
-        if (array[left].compareTo(array[right]) > 0) {
-            exchange(array, left, right);
+    /**
+     * exchange x with y, if x is bigger than y
+     * @param array
+     * @param x
+     * @param y
+     * @param <T>
+     * @return
+     */
+    public static <T extends Comparable<T>> boolean exchangeIfBigger(T[] array, int x, int y) {
+        if (array[x].compareTo(array[y]) > 0) {
+            exchange(array, x, y);
             return true;
         } else {
             return false;
         }
+    }
+
+    public static <T extends Comparable<T>> boolean less(T[] array, int x, int y) {
+        return array[x].compareTo(array[y]) < 0;
     }
 
     public static <T> void exchange(T[] a, int x, int y) {

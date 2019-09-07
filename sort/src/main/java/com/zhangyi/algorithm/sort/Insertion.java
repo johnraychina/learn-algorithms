@@ -1,8 +1,6 @@
 package com.zhangyi.algorithm.sort;
 
-import com.alibaba.fastjson.JSON;
-
-import static com.zhangyi.algorithm.sort.Utils.compareAndExchange;
+import static com.zhangyi.algorithm.sort.Utils.exchangeIfBigger;
 import static com.zhangyi.algorithm.sort.Utils.show;
 
 /**
@@ -40,7 +38,7 @@ public class Insertion {
 
             //exchange elementToInsert all the way to appropriate position in sorted left side [0 ... i]
             for (int j = i; j >= 0; j--) {
-                boolean exchanged = compareAndExchange(array, j, j + 1);
+                boolean exchanged = exchangeIfBigger(array, j, j + 1);
                 if (exchanged) {
                     show(array);
                 } else {
