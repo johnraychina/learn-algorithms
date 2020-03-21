@@ -2,7 +2,7 @@ package com.zhangyi.algorithm.sort.priority_queue;
 
 /**
  *
- * @author 张义 reed.zy@alibaba-inc.com
+ * @author 张义 johnraychina@163.com
  */
 public class MinPQ<Key extends Comparable<Key>> {
     private final int min;
