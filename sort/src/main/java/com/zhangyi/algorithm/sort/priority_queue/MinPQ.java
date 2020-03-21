@@ -6,6 +6,7 @@ package com.zhangyi.algorithm.sort.priority_queue;
  */
 public class MinPQ<Key extends Comparable<Key>> {
     private final int min;
+    private Key[] array;
 
     MinPQ() {
         min = 100;

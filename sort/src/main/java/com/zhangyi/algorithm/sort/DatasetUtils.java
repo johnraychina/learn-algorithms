@@ -15,7 +15,7 @@ public class DatasetUtils {
         return lines.stream()
             .map(line -> {
                 String[] columns = line.split(",");
-                return new Pair<>(columns[0], new BigDecimal(columns[1]));
+                return new Pair<>(columns[0].trim(), new BigDecimal(columns[1].trim()));
             }).collect(Collectors.toList());
     }
 }

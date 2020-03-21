@@ -1,11 +1,10 @@
 package com.zhangyi.algorithm.sort.priority_queue;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.zhangyi.algorithm.sort.DatasetUtils;
 
@@ -13,7 +12,7 @@ import static com.zhangyi.algorithm.sort.Utils.exchange;
 import static com.zhangyi.algorithm.sort.Utils.less;
 
 /**
- * Priority queue that
+ * Max Priority Queue
  *
  * @author johnraychina@163.com
  */
@@ -26,9 +25,10 @@ public class MaxPQ<Key extends Comparable<Key>> {
         this.array = (Key[])new Comparable[capacity + 1];
     }
 
-    void insert(Key v) {
-        if (N >= array.length) {
-            delMax();
+    Key insert(Key v) {
+        Key max = null;
+        if (N >= array.length - 1) {
+            max = delMax();
         }
 
         //insert the node to the last of array, then swim
@@ -36,6 +36,8 @@ public class MaxPQ<Key extends Comparable<Key>> {
 
         array[N] = v;   //insert the value to the right of the last node and then become the last node itself
         swim(N);        //restore the order by swim(N)
+
+        return max;
     }
 
     //delete and return the maximum element
@@ -138,13 +140,19 @@ public class MaxPQ<Key extends Comparable<Key>> {
 
     public static void main(String[] args) throws IOException {
 
+        File file = new File("sort/target/classes/transactions.txt");
+        System.out.println(file.getAbsolutePath());
+
         List<Pair<String, BigDecimal>> transactions = DatasetUtils.loadTransactions(
-            Files.readAllLines(Paths.get("transactions.txt")));
+            Files.readAllLines(file.toPath()));
 
         //just keep top 3 transactions
-        MaxPQ queue = new MaxPQ(3);
-
+        //当队列满了的时候，新的交易请求入队列前，优先处理当前收到交易请求的最大值
+        MaxPQ<BigDecimal> queue = new MaxPQ<>(3);
+        transactions.forEach(t -> {
+            BigDecimal currentMax = queue.insert(t.getValue());
+            System.out.println("transaction:" + currentMax);
+        });
     }
-
 
 }
