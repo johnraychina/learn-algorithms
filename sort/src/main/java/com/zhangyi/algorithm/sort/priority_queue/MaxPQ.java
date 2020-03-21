@@ -147,7 +147,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
             Files.readAllLines(file.toPath()));
 
         //just keep top 3 transactions
-        //当队列满了的时候，新的交易请求入队列前，优先处理当前收到交易请求的最大值
+        //当队列满了的时候，新的交易请求入队列前，优先处理队列中的最大值
         MaxPQ<BigDecimal> queue = new MaxPQ<>(3);
         transactions.forEach(t -> {
             BigDecimal currentMax = queue.insert(t.getValue());
