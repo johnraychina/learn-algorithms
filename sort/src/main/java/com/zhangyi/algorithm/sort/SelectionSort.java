@@ -11,7 +11,7 @@ import static com.zhangyi.algorithm.sort.Utils.show;
  * 固定N次交换
  * 额外空间：1个temp
  */
-public class Selection {
+public class SelectionSort {
 
 
     public static <T extends Comparable<T>> void sort(T[] array) {

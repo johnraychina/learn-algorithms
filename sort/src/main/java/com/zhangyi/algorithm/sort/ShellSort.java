@@ -17,7 +17,7 @@ import static com.zhangyi.algorithm.sort.Utils.show;
  *
  * @author 张义 johnraychina@163.com
  */
-public class Shell {
+public class ShellSort {
 
     public static <T extends Comparable<T>> void sort(T[] array) {
 

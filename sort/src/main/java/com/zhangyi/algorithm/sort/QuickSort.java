@@ -6,7 +6,7 @@ import static com.zhangyi.algorithm.sort.Utils.show;
 /**
  * @author 张义 johnraychina@163.com
  */
-public class Quick {
+public class QuickSort {
     public static void main(String[] args) {
         String[] array = new String[] {"b", "c", "d", "a", "e", "x", "a", "m", "p", "l", "e"};
         sort(array);

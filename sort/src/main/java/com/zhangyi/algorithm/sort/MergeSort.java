@@ -18,7 +18,7 @@ import static com.zhangyi.algorithm.sort.Utils.show;
  *
  * @author 张义 johnraychina@163.com
  */
-public class Merge {
+public class MergeSort {
 
     private static Comparable[] aux;
 
