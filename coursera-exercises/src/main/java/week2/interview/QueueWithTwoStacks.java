@@ -19,13 +19,13 @@ import edu.princeton.cs.algs4.StdOut;
 public class QueueWithTwoStacks<Item> {
 
     // YY一下：
-    // Robert教授嫌弃java的Stack是基于Vector，Vector基于数组实现，需要调整大小，实现麻烦而且性能差。
+    // Robert教授嫌弃java.util.Stack是基于Vector，Vector基于数组实现，需要调整大小，性能差。
     // 另外教学场景用不上synchronized, 他们自己用linked list简单实现了一个Stack。
     // 自己手撸每种数据结构，便于了解每个细节，便于教学。
     // 不会有兼容性问题，随时间推移，到时候java要是调整类库什么的，用自己实现的这些数据结构仍然能工作，很有远见.
     // 代码自主可控，自己想怎么玩就怎么玩，不会被专利流氓oracle之流告上法庭。
-    private edu.princeton.cs.algs4.Stack<Item> inputStack;
-    private edu.princeton.cs.algs4.Stack<Item> outputStack;
+    private Stack<Item> inputStack;
+    private Stack<Item> outputStack;
 
     // convert stack LIFO to queue FIFO by two stack: inputStack, outputStack
     // push: inputStack
@@ -105,11 +105,12 @@ public class QueueWithTwoStacks<Item> {
     }
 
     public static void main(String[] args) {
+        StdOut.println("Test stack");
         testStack();
 
-        StdOut.println("-----------------------------");
+        StdOut.println("Test queue with two stacks");
 
-        testQueuWithTwoStack();
+        testQueueWithTwoStacks();
     }
 
     private static void testStack() {
@@ -129,7 +130,7 @@ public class QueueWithTwoStacks<Item> {
 
     }
 
-    private static void testQueuWithTwoStack() {
+    private static void testQueueWithTwoStacks() {
 
         QueueWithTwoStacks<Integer> queue = new QueueWithTwoStacks<Integer>();
 
