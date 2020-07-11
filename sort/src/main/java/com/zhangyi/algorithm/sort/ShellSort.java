@@ -1,11 +1,12 @@
 package com.zhangyi.algorithm.sort;
 
-import static com.zhangyi.algorithm.sort.Utils.exchangeIfBigger;
 import static com.zhangyi.algorithm.sort.Utils.exchange;
+import static com.zhangyi.algorithm.sort.Utils.exchangeIfBigger;
 import static com.zhangyi.algorithm.sort.Utils.show;
 
 /**
  * 希尔排序
+ * KEY IDEA: move more than one position each time.
  * <p>
  * 选择排序和插入排序一次对比和交换位置只能减少一次乱序数，对于非常乱的数据而言，效果不好。
  * 我们把距离为delta的数据作为一组，每组组内数据做选择排序，然后再缩小h -> 一直到1(2个相邻元素)即可。
@@ -13,6 +14,7 @@ import static com.zhangyi.algorithm.sort.Utils.show;
  * 这样，组内排序时，一次对比和交换位置就可能减少h个。
  *
  * 对于非常乱的数据非常有用。
+ *
  * </p>
  *
  * @author 张义 johnraychina@163.com
