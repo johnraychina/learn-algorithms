@@ -63,14 +63,16 @@ public class MergeSort<T extends Comparable<T>> {
         assert isSorted(array, lo, mid);
         assert isSorted(array, mid + 1, hi);
 
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = array[k];
-        }
+        // optimization: better performance with JVM native array copy
+        //for (int k = lo; k <= hi; k++) {
+        //    aux[k] = array[k];
+        //}
+        if (hi + 1 - lo >= 0) { System.arraycopy(array, lo, aux, lo, hi + 1 - lo); }
 
-        int i = lo; //i: left side aux[lo ... mid]
-        int j = mid + 1; //j: right side aux[mid+1 ... hi]
+        int i = lo; //i: to iterate over left side of aux[lo ... mid]
+        int j = mid + 1; //j: to iterate over right side of aux[mid+1 ... hi]
 
-        // compare left side,  auxiliary array
+        // compare left with right side of auxiliary array, and put the smaller one back to array.
         for (int k = lo; k <= hi; k++) {
             if (i > mid) {
                 array[k] = (T)aux[j++]; // left side is finished, just copy right side
