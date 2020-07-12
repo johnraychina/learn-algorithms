@@ -8,15 +8,15 @@ import static com.zhangyi.algorithm.sort.Utils.show;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        String[] array = new String[] {"b", "c", "d", "a", "e", "x", "a", "m", "p", "l", "e"};
+        String[] array = "q u i c k s o r t e x a m p l e".split(" ");
         sort(array);
     }
 
-    public static void sort(Comparable[] a) {
+    public static <T extends Comparable<T>> void sort(T[] a) {
         sort(a, 0, a.length - 1);
     }
 
-    public static void sort(Comparable[] a, int lo, int hi) {
+    public static  <T extends Comparable<T>> void sort(T[] a, int lo, int hi) {
 
         if (lo >= hi) { return; }
         int j = partition(a, lo, hi);
@@ -27,11 +27,11 @@ public class QuickSort {
 
     }
 
-    private static int partition(Comparable[] a, int lo, int hi) {
+    private static <T extends Comparable<T>> int partition(T[] a, int lo, int hi) {
 
         //a[lo]作为分区的中间元素
         //小于它的准备放左边，大于它的准备放右边
-        Comparable mid = a[lo];
+        T mid = a[lo];
 
         //i是左边元素
         int i = lo;
