@@ -45,6 +45,7 @@ public class ConsistentHashingWithoutVirtualNode {
     }
 
     //使用FNV1_32_HASH算法计算服务器的Hash值,这里不使用重写hashCode的方法，最终效果没区别
+    //为什么要将低位往高位移，或者高位往低位移动，然后做xor异或呢：保证高位变动和低位变动对hash值的影响在同一层级，容易打散开，避免扎堆。
     private static int getHash(String str) {
         final int p = 16777619;
         int hash = (int)2166136261L;

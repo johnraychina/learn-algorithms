@@ -3,18 +3,44 @@ package com.zhangyi;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+
+import static com.sun.xml.internal.fastinfoset.util.ValueArray.MAXIMUM_CAPACITY;
 
 /**
  * @author 张义 johnraychina@163.com
  */
 public class Test {
+    static final int MAXIMUM_CAPACITY = 1 << 30;
 
     public static void main(String[] args) {
 
-        LocalDate bizDate = LocalDate.now();
-        Date firstDayOfThisMonth = Date.from(bizDate.withDayOfMonth(1)
-            .atStartOfDay(ZoneId.systemDefault()).toInstant());
-        System.out.println(firstDayOfThisMonth);
+        System.out.println(tableSizeFor(1));
+        System.out.println(tableSizeFor(3));
+        System.out.println(tableSizeFor(4));
+        System.out.println(tableSizeFor(7));
 
+        //hash map Node<K,V>结构可以存null value
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("123", null);
+
+        //linked list Node<E>结构可以存null value
+        LinkedList<Object> list = new LinkedList<>();
+        list.add(null);
+        list.add(null);
+
+
+
+    }
+
+    public static final int tableSizeFor(int cap) {
+        int n = cap - 1;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
     }
 }

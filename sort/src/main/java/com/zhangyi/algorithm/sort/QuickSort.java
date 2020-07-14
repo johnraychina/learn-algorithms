@@ -13,18 +13,90 @@ public class QuickSort {
     }
 
     public static <T extends Comparable<T>> void sort(T[] a) {
+        show("--------------Normal QuickSort-----------");
         sort(a, 0, a.length - 1);
+
+        show("--------------3-Way QuickSort-----------");
+        threeWayQuickSort(a, 0, a.length - 1);
     }
 
-    public static  <T extends Comparable<T>> void sort(T[] a, int lo, int hi) {
+    public static <T extends Comparable<T>> void sort(T[] a, int lo, int hi) {
 
         if (lo >= hi) { return; }
         int j = partition(a, lo, hi);
         sort(a, lo, j - 1);
-        //show("-----------Left sort complete: " + j + "-----------");
         sort(a, j + 1, hi);
-        //show("-----------Right sort complete: " + j + "-----------");
 
+        show(a);
+    }
+
+    /**
+     * 3-way partitioning for duplicate keys.
+     *
+     * N lg N when all distinct;
+     * linear when only a constant number of distinct keys
+     *
+     * <pre>
+     * Goal:
+     * ・Entries between lt and gt equal to partition item v.
+     * ・No larger entries to left of lt.
+     * ・No smaller entries to right of gt.
+     *
+     *
+     *      [v] [..............................................................]
+     *      |    |                                                            |
+     *      lt   i                                                           gt
+     *
+     *
+     *      [ little than v ] [v ... v] [......................] [greater than v]
+     *                         |         |                    |
+     *                        lt         i                   gt
+     *
+     *
+     *      [ little than v ] [v ......... v] [...........greater than v.......]
+     *                         |           |
+     *                        lt           gt
+     *
+     *
+     *
+     * </pre>
+     *
+     * @param a
+     * @param lo
+     * @param hi
+     * @param <T>
+     * @return
+     */
+    private static <T extends Comparable<T>> void threeWayQuickSort(T[] a, int lo, int hi) {
+        show(a);
+        if (lo <= hi) {
+            return;
+        }
+
+        // Let v be partitioning item a[lo]
+        // Scan i from left to right
+        // - a[i] < v: exchange a[i] with a[lt], and increment both i and lt
+        // - a[i] > v: exchange a[i] with a[gt], and decrement gt
+        // - a[i] == v: increment both i
+        T v = a[lo];
+        int i = lo;
+        int lt = lo;
+        int gt = hi;
+
+        while (i <= gt) {
+            int cmp = a[i].compareTo(v);
+            if (cmp < 0) {
+                exchange(a, i++, lt++);
+            } else if (cmp > 0) {
+                exchange(a, i, gt--);
+            } else {
+                i++;
+            }
+        }
+
+        threeWayQuickSort(a, lo, lt - 1);
+        threeWayQuickSort(a, i, hi);
+        show(a);
     }
 
     private static <T extends Comparable<T>> int partition(T[] a, int lo, int hi) {
