@@ -1,8 +1,6 @@
 package com.zhangyi.algorithm.sort.priority_queue;
 
-import java.io.Serializable;
-
-public class Pair<K, V> implements Serializable {
+public class Pair<K, V> {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,5 +27,9 @@ public class Pair<K, V> implements Serializable {
 
     public void setValue(V value) {
         this.value = value;
+    }
+
+    public String toString() {
+        return key.toString() + ":" + value.toString();
     }
 }
