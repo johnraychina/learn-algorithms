@@ -8,7 +8,7 @@ package week2.interview;
  * <p>
  * Hint: Use two stacks, one to store all of the items and a second stack to store the maximums.
  *
- * @author 张义 reed.zy@alibaba-inc.com
+ * @author 张义 johnraychina@163.com
  */
 public class StackWithMax {
 

@@ -14,7 +14,7 @@ import algs4.StdOut;
  * Hint: If you push elements onto a stack and then pop them all, they appear in reverse order. If you repeat this
  * process, they're now back in order.
  *
- * @author 张义 reed.zy@alibaba-inc.com
+ * @author 张义 johnraychina@163.com
  */
 public class QueueWithTwoStacks<Item> {
 

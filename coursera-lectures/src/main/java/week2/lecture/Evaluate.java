@@ -7,7 +7,7 @@ import algs4.StdOut;
 /**
  * 表达式求值
  *
- * @author 张义 reed.zy@alibaba-inc.com
+ * @author 张义 johnraychina@163.com
  */
 public class Evaluate {
     public static void main(String[] args) {

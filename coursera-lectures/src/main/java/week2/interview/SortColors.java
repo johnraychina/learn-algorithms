@@ -18,7 +18,7 @@ package week2.interview;
  * number of 0's, 1's, and 2's, then overwrite array with total number of 0's, then 1's and followed by 2's. Could you
  * come up with a one-pass algorithm using only constant space?
  *
- * @author 张义 reed.zy@alibaba-inc.com
+ * @author 张义 johnraychina@163.com
  */
 public class SortColors {
 

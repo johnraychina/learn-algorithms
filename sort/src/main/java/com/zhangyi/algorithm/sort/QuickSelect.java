@@ -17,7 +17,7 @@ import static com.zhangyi.algorithm.sort.Utils.less;
  * 当K=N/2时，C_N = 2N + 2N ln2
  * </pre>
  *
- * @author 张义 reed.zy@alibaba-inc.com
+ * @author 张义 johnraychina@163.com
  */
 public class QuickSelect {
 

@@ -1,7 +1,7 @@
 package com.zhangyi.algorithm.sort.hash;
 
 /**
- * @author 张义 reed.zy@alibaba-inc.com
+ * @author 张义 johnraychina@163.com
  */
 
 import java.util.LinkedList;
