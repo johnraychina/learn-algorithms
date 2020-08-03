@@ -2,7 +2,6 @@ package com.zhangyi.graph;
 
 import algs4.Graph;
 import algs4.In;
-import algs4.Stack;
 import algs4.StdOut;
 
 /**
@@ -10,15 +9,14 @@ import algs4.StdOut;
  */
 public class DepthFirstSearch {
     private boolean[] marked;
-    private int[] edgeTo;
-    private int s; //start vertex
+    private int componentId[]; //component id of each vertices
+    private int count;         // number of connected components(zero based)
 
     public DepthFirstSearch(Graph g, int s) {
         //initialize data structures
         marked = new boolean[g.V()];
-        edgeTo = new int[g.E()];
-        this.s = s;
-
+        componentId = new int[g.V()];
+        count = 0;
         dfs(g, s);
     }
 
@@ -29,17 +27,36 @@ public class DepthFirstSearch {
         for (int w : G.adj(v)) {
             if (!marked[w]) {
                 dfs(G, w);
+                count++;
             }
         }
     }
 
     private void mark(int v) {
         marked[v] = true;
+        componentId[v] = count;
         System.out.println(v);
     }
 
     public boolean marked(int v) {
         return marked[v];
+    }
+
+    //count of components
+    public int count() {
+        return count;
+    }
+
+    public boolean connected(int a, int b) {
+        validateVertex(a);
+        validateVertex(b);
+
+        return componentId[a] == componentId[b];
+    }
+
+    private void validateVertex(int v) {
+        int V = marked.length;
+        if (v < 0 || v >= V) { throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1)); }
     }
 
     /**
