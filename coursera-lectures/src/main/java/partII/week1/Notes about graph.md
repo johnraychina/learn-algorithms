@@ -22,7 +22,7 @@ Graph 与 Digraph 数据结构和算法逻辑高度一致，把Graph的每条边
 目标：给定一组任务，任务之间有先后约束关系，如何排定顺序？
 
 ### DAG Topological Sort 拓扑排序
-定义：重新绘制DAG，节点排成一条线，边全部指向一个方案向。
+定义：重新绘制DAG，节点排成一条线，边全部指向一个方向。
 算法：
 - 执行DFS: run depth first search 
 - 生成反向后序遍历序列（叶子节点作为终点，先叶子后父节点生成一个序列）
@@ -43,6 +43,5 @@ Phase 1: run DFS on G-Reverse to compute reverse postorder.
 
 
  
+# Challenge #1 如何检测一个Digraph有没有环呢？
 
-# 如何检测一个Digraph有没有环呢？
-图算法的厉害之处在于：一些问题可以用常数 或 线性时间解出来
