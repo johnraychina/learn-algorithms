@@ -81,7 +81,7 @@ public class KMP {
 
     public int search(In in) {
         int i, j;
-        for (j = 0; !in.isEmpty() && j < M; i++) {
+        for (i = 0, j = 0; !in.isEmpty() && j < M; i++) {
             j = dfa[in.readChar()][j]; //next state j = dfa[match in char] [current state]
         }
         if (j == M) { return i - M; } else { return NOT_FOUND; }
