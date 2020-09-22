@@ -5,6 +5,7 @@ import algs4.In;
 import algs4.StdOut;
 
 /**
+ * 深度优先搜索，用于判断从起始点s到其他点的可达性。
  * @author 张义 johnraychina@163.com
  */
 public class DepthFirstSearch {

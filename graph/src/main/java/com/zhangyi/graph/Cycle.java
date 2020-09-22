@@ -4,7 +4,10 @@ import algs4.Graph;
 import algs4.Stack;
 
 /**
- * 无环图和树等价，dfs往下遍历子节点会构成一棵树，所有节点应该都只被遍历一次，若是发现有子节点已经被标记（遍历）过，就说明构成环。
+ * <pre>
+ * 无环图和树等价，dfs往下遍历子节点会构成一棵树，所有节点应该都只被遍历一次，
+ * 若是发现有子节点已经被标记（遍历）过，就说明构成环。
+ * </pre>
  *
  * @author 张义 johnraychina@163.com
  */
@@ -39,7 +42,7 @@ public class Cycle {
         for (int w : G.adj(v)) {
             if (!marked[w]) {
                 dfs(G, w, v);
-            } else if (w != u) {
+            } else if (w != u) { //dfs v的邻接点（排除上级u）被标记过，说明有环，
                 hasCycle = true;
             }
         }
