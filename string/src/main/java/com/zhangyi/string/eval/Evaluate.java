@@ -90,20 +90,19 @@ public class Evaluate {
      */
     public static Queue<String> toRPN(String[] e) {
         Stack<String> ops = new Stack<>();
-        Stack<Double> vals = new Stack<>();
         Queue<String> out = new LinkedList<>();
 
-        for (int i = 0; i < e.length; i++) {
-            if (isNumber(e[i])) {
-                vals.push(Double.parseDouble(e[i]));
-            } else if (isOperator(e[i])) {
-                while (comparePriority(ops.peek(), e[i]) > 0 && !isLeftParenthesis(ops.peek())) {
+        for (String s : e) {
+            if (isNumber(s)) {
+                out.add(s);
+            } else if (isOperator(s)) {
+                while (comparePriority(ops.peek(), s) > 0 && !isLeftParenthesis(ops.peek())) {
                     out.add(ops.pop());
                 }
-                ops.push(e[i]);
-            } else if (isLeftParenthesis(e[i])) {
-                ops.push(e[i]);
-            } else if (isRightParenthesis(e[i])) {
+                ops.push(s);
+            } else if (isLeftParenthesis(s)) {
+                ops.push(s);
+            } else if (isRightParenthesis(s)) {
                 while (!isLeftParenthesis(ops.peek())) {
                     out.add(ops.pop());
                 }
@@ -113,9 +112,13 @@ public class Evaluate {
             }
         }
 
+        //将ops栈剩下的操作符输出
+        while (!ops.isEmpty()) {
+            out.add(ops.pop());
+        }
+
         return out;
     }
-
 
 
     private static boolean isLeftParenthesis(String s) {
@@ -153,16 +156,16 @@ public class Evaluate {
         Stack<String> ops = new Stack<>();
         Stack<Double> vals = new Stack<>();
 
-        for (int i = 0; i < e.length; i++) {
+        for (String s : e) {
 
             //如果是数字则入栈vals
             //如果是操作符则入栈ops
             //如果是)则弹出ops和2个vals，执行计算，然后push到vals
-            if (e[i].equals("+") || e[i].equals("-") || e[i].equals("*") || e[i].equals("/")) {
-                ops.push(e[i]);
-            } else if (e[i].equals("(")) {
+            if (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/")) {
+                ops.push(s);
+            } else if (s.equals("(")) {
                 continue;
-            } else if (e[i].equals(")")) {
+            } else if (s.equals(")")) {
                 String op = ops.pop();
                 Double a = vals.pop();
                 Double b = vals.pop();
@@ -171,7 +174,7 @@ public class Evaluate {
                 if (op.equals("*")) { vals.push(a * b); }
                 if (op.equals("/")) { vals.push(a / b); }
             } else {
-                vals.push(Double.parseDouble(e[i]));
+                vals.push(Double.parseDouble(s));
             }
         }
 
