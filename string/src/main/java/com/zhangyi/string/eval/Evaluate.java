@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
-import java.util.stream.Collectors;
 
 /**
  * <pre>
@@ -189,7 +188,9 @@ public class Evaluate {
     }
 
     /**
-     * 支持优先级运算，支持括号中多个运算符。
+     * 支持优先级运算，支持括号中多个运算符。 触发计算case1：优先级更低的新操作数来了，得先将ops中优先级高的算完 触发计算case2：右括号来了，说明当前ops中(...)之间的计算都比后续新操作数高，括号里面的运算要先做。
+     * <p>
+     * while循环读取表达式元素： 如果是数字则入栈vals 如果是操作符则： 如果ops顶部优先级更高，则先计算ops顶部操作符 操作符入栈ops 如果是)则计算括号里面的内容 将ops中剩余操作执行完
      *
      * @param tokens 表达式元素数组
      * @return 结果值
@@ -198,31 +199,18 @@ public class Evaluate {
         Stack<String> ops = new Stack<>();
         Stack<Double> vals = new Stack<>();
 
-        //触发计算case1：优先级更低的新操作数来了，得先将ops中优先级高的算完
-        //触发计算case2：右括号来了，说明当前ops中(...)之间的计算都比后续新操作数高，括号里面的运算要先做。
-
-        /**
-         *
-         * while循环读取表达式元素：
-         *         如果是数字则入栈vals
-         *         如果是操作符则：
-         *            如果ops顶部优先级更高，则先计算ops顶部操作符
-         *            操作符入栈ops
-         *         如果是)则计算括号里面的内容
-         *
-         * 将ops中剩余操作执行完
-         *
-         */
         for (String s : tokens) {
             if (operatorMap.containsKey(s)) {
-                //把当前ops栈优先级高的先算完，剩下的ops优先级都不会高于新的运算符
+                //保证当前ops栈优先级高的运算符先算完
                 while (!ops.isEmpty() && !isLeftParenthesis(ops.peek()) && comparePriority(ops.peek(), s) > 0) {
                     evalTopOperator(ops, vals);
                 }
-                ops.push(s); //再push新的运算符
+                //再push新的运算符
+                ops.push(s);
             } else if (s.equals("(")) {
-                ops.push(s); //与simpleEval全括号不同的是，括号里面有多个运算符，需要保留左括号作为一个标记：优先计算遇到右括号开始，遇到到左括号结束。
+                //与simpleEval全括号不同的是，括号里面有多个运算符，需要保留左括号作为一个标记：优先计算遇到右括号开始，遇到到左括号结束。
                 //continue;
+                ops.push(s);
             } else if (s.equals(")")) {
                 //如果是右括号，要一直计算到左括号，相对于后续的运算，括号里面都是优先级高的运算
                 while (!ops.isEmpty() && !isLeftParenthesis(ops.peek())) {
@@ -260,14 +248,18 @@ public class Evaluate {
     public static void main(String[] args) {
         String inputExpr = "( ( ( ( 1 + 2 ) * 3 ) + ( 4 * 5 ) ) + 6 )";
         String[] tokens = inputExpr.split("\\s+");
-        System.out.println(simpleEval(tokens));
 
+        System.out.println(inputExpr);
         String rpn = String.join(" ", toRPN(tokens));
-        System.out.println(inputExpr + "==>Reverse Polish Notation:" + rpn);
+        System.out.println(" 逆波兰表达式:" + rpn);
 
-        inputExpr = "( 1 + 2 ) * 3 + 4 * 5 )";
+        System.out.println(inputExpr);
+        System.out.println("全括号模式计算：" + simpleEval(tokens));
+
+        inputExpr = "( 1 + 2 ) * 3 + 4 * 5";
         tokens = inputExpr.split("\\s+");
-        System.out.println(inputExpr + " = " + advancedEval(tokens));
+        System.out.println(inputExpr);
+        System.out.println("改进版计算：" + advancedEval(tokens));
     }
 
 }
