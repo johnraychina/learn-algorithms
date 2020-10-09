@@ -15,7 +15,7 @@ import java.util.Stack;
  *
  * @author Zhang Yi
  */
-public class Evaluate {
+public class DijkstraShuntingYardEvaluation {
 
     /**
      * <pre>
