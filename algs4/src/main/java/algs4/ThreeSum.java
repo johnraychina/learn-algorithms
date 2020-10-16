@@ -95,9 +95,13 @@ public class ThreeSum {
      *
      * @param args the command-line arguments
      */
-    public static void main(String[] args)  { 
-        In in = new In(args[0]);
-        int[] a = in.readAllInts();
+    public static void main(String[] args)  {
+        //In in = new In(args[0]);
+        //int[] a = in.readAllInts();
+        int[] a = new int[1000];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = i;
+        }
 
         Stopwatch timer = new Stopwatch();
         int count = count(a);
