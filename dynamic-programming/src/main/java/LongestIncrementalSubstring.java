@@ -25,7 +25,47 @@ import java.util.Arrays;
  * @author Zhang Yi
  */
 public class LongestIncrementalSubstring {
+
+    public static int lengthOfLIS(int[] nums) {
+        //问题：最长上升子序列的长度
+        //状态：以数组元素a[x]结尾的上升子序列长度为f(x), 问题就是求解max{f(x)}
+        //子问题：如果以a[x]结尾的序列，前一个是a[p]，且a[p] < a[x]，那么子问题就是求解max{f(p)}
+        //状态转移方程：f(x) = max{f(p)} + 1 , if a[p] < a[x]
+        //初始条件：f(0~n-1) = 1，子串只包含自己
+
+        if (nums.length == 0) {
+            return 0;
+        }
+
+        //[1,3,6,7,9,4,10,5,6]
+        int[] dp = new int[nums.length];
+        int totalMax = 0; //整体问题最大值
+        for (int i = 0; i < nums.length; i++) {
+            dp[i] = 1; //子问题dp[i]：以i结尾的最长上升子序列的长度初始为1（只包含num[i]自己)
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1); //求解子问题dp[i]=max{dp[j] + 1}
+                }
+            }
+            //整体问题 = max{ dp[i] }
+            totalMax = Math.max(totalMax, dp[i]);
+        }
+
+        return totalMax;
+    }
+
     public static void main(String[] args) {
+
+        //int nums[] = {10, 9, 2, 5, 3, 7, 101, 18};
+        int nums[] = {1, 3, 6, 7, 9, 4, 10, 5, 6};
+        System.out.println(lengthOfLIS(nums));
+
+    }
+
+    public static void solution() {
         int[] a = {1, 5, 3, 4, 6, 9, 7, 8};
         for (int i = 0; i < a.length; i++) {
             System.out.printf("%d ", a[i]);
@@ -48,7 +88,6 @@ public class LongestIncrementalSubstring {
             f[x] = max_fp + 1;
             System.out.printf("f[%d]=%d \n", x, f[x]);
         }
-
     }
 
 }
