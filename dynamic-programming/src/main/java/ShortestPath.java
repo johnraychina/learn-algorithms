@@ -37,7 +37,7 @@ public class ShortestPath {
         // solution 1: guess the first edgeTo:
         // shortestPath(S, v) = min{ edgeTo(S, u) + shortestPath(u, v) | (S, u) in edges}
         for (int v = 1; v <= N; v++) {
-            int[] edgeToV = edgeTo[v];
+            int[] edgeToV = edgeTo[v]; //如果改成链表，edgeToV数目不是，而是inDegree(v)
             //子问题求解
             for (int u = 1; u <= N; u++) {
                 if (shortestPath[u] != Integer.MAX_VALUE && edgeToV[u] != Integer.MAX_VALUE) {
@@ -46,14 +46,14 @@ public class ShortestPath {
             }
         }
 
-        System.out.printf("ShortestPath(%d,%d)=%d \n", S, V, shortestPath[V]);
+        System.out.printf("1:ShortestPath(%d,%d)=%d \n", S, V, shortestPath[V]);
 
         // solution 2: guess the last edgeTo:
         // shortestPath(S, v) = min{ shortestPath(S, u) + edgeTo(u, v) | (u,v) in edges}
         //对节点v进行遍历
         //对每条u -> v边进行遍历遍历
         for (int v = N; v <= 1; v++) {
-            int[] edgeToV = edgeTo[v];
+            int[] edgeToV = edgeTo[v]; //如果改成链表，edgeToV数目不是，而是inDegree(v)
             //子问题求解
             for (int u = N; u <= 1; u++) {
                 if (shortestPath[u] != Integer.MAX_VALUE && edgeToV[u] != Integer.MAX_VALUE) {
@@ -62,6 +62,6 @@ public class ShortestPath {
             }
         }
 
-        System.out.printf("ShortestPath(%d,%d)=%d \n", S, V, shortestPath[V]);
+        System.out.printf("2:ShortestPath(%d,%d)=%d \n", S, V, shortestPath[V]);
     }
 }
