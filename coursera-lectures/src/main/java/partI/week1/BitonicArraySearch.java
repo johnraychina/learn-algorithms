@@ -1,4 +1,4 @@
-package week1;
+package partI.week1;
 
 /**
  * Search in a bitonic array. An array is bitonic if it is comprised of an increasing sequence of integers followed

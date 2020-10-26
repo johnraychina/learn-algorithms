@@ -1,4 +1,4 @@
-package week1;
+package partI.week1;
 
 /**
  * Egg drop. Suppose that you have an nn-story building (with floors 1 through nn) and plenty of eggs. An egg breaks if

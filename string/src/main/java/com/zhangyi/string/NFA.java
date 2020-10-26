@@ -110,7 +110,8 @@ public class NFA {
     }
 
     public static void main(String[] args) {
-        String regexp = "(.*(art|science).*)";
+        //String regexp = "(.*(art|science).*)";
+        String regexp = ".*(art|science).*";
         String txt = "The art of computer Science";
         NFA nfa = new NFA(regexp);
         StdOut.println(nfa.recognizes(txt));

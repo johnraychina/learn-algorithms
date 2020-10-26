@@ -1,4 +1,4 @@
-package week1.exam;
+package partI.week1.exam;
 
 import algs4.StdRandom;
 

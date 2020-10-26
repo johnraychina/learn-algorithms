@@ -1,4 +1,4 @@
-package week2.interview;
+package partI.week2.interview;
 
 /**
  * https://leetcode.com/problems/sort-colors/
