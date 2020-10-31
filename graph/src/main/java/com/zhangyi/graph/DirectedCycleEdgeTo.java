@@ -46,28 +46,6 @@ public class DirectedCycleEdgeTo {
         }
     }
 
-    /**
-     * Unit tests the {@code DirectedCycle} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        In in = new In("simple_directed_graph.txt");
-        Digraph G = new Digraph(in);
-
-        DirectedCycleEdgeTo finder = new DirectedCycleEdgeTo(G);
-        if (finder.hasCycle()) {
-            StdOut.print("Directed cycle: ");
-            for (int v : finder.cycle()) {
-                StdOut.print(v + " ");
-            }
-            StdOut.println();
-        } else {
-            StdOut.println("No directed cycle");
-        }
-        StdOut.println();
-    }
-
     private void dfs(Digraph g, int v) {
 
         marked[v] = true;
@@ -100,5 +78,27 @@ public class DirectedCycleEdgeTo {
 
     public boolean hasCycle() {
         return cycle != null;
+    }
+
+    /**
+     * Unit tests the {@code DirectedCycle} data type.
+     *
+     * @param args the command-line arguments
+     */
+    public static void main(String[] args) {
+        In in = new In("simple_directed_graph.txt");
+        Digraph G = new Digraph(in);
+
+        DirectedCycleEdgeTo finder = new DirectedCycleEdgeTo(G);
+        if (finder.hasCycle()) {
+            StdOut.print("Directed cycle: ");
+            for (int v : finder.cycle()) {
+                StdOut.print(v + " ");
+            }
+            StdOut.println();
+        } else {
+            StdOut.println("No directed cycle");
+        }
+        StdOut.println();
     }
 }

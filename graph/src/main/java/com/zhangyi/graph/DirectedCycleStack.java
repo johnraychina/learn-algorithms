@@ -47,28 +47,6 @@ public class DirectedCycleStack {
         }
     }
 
-    /**
-     * Unit tests the {@code DirectedCycle} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        In in = new In("simple_directed_graph.txt");
-        Digraph G = new Digraph(in);
-
-        DirectedCycleStack finder = new DirectedCycleStack(G);
-        if (finder.hasCycle()) {
-            StdOut.print("Directed cycle: ");
-            for (int v : finder.cycle()) {
-                StdOut.print(v + " ");
-            }
-            StdOut.println();
-        } else {
-            StdOut.println("No directed cycle");
-        }
-        StdOut.println();
-    }
-
     private void dfs(Digraph g, int v) {
         if (hasCycle) {
             return; //如果有cycle则立即返回，保持dfsStack状态
@@ -118,5 +96,27 @@ public class DirectedCycleStack {
 
     public boolean hasCycle() {
         return hasCycle;
+    }
+
+    /**
+     * Unit tests the {@code DirectedCycle} data type.
+     *
+     * @param args the command-line arguments
+     */
+    public static void main(String[] args) {
+        In in = new In("simple_directed_graph.txt");
+        Digraph G = new Digraph(in);
+
+        DirectedCycleStack finder = new DirectedCycleStack(G);
+        if (finder.hasCycle()) {
+            StdOut.print("Directed cycle: ");
+            for (int v : finder.cycle()) {
+                StdOut.print(v + " ");
+            }
+            StdOut.println();
+        } else {
+            StdOut.println("No directed cycle");
+        }
+        StdOut.println();
     }
 }
