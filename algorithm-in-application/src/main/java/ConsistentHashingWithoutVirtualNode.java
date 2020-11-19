@@ -1,5 +1,3 @@
-package com.zhangyi.algorithm.sort.hash;
-
 import java.util.SortedMap;
 import java.util.TreeMap;
 
