@@ -28,7 +28,7 @@ public class NewtonSquareRoot {
             throw new IllegalArgumentException();
         }
 
-        double x = 1; //好的初始位置可以减少一些迭代次数
+        double x = a; //好的初始位置可以减少一些迭代次数
         double halfA = a / 2;
         for (int i = 0; i < 10; i++) {
             x = x / 2 + halfA / x; //Newtons' method

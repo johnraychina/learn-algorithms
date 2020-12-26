@@ -8,8 +8,8 @@
 
 package algs4;
 
-import java.util.Iterator;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
@@ -295,7 +295,6 @@ public class BinomialMinPQ<Key> implements Iterable<Key> {
 	
 	//default Comparator
 	private class MyComparator implements Comparator<Key> {
-		@Override
 		public int compare(Key key1, Key key2) {
 			return ((Comparable<Key>) key1).compareTo(key2);
 		}

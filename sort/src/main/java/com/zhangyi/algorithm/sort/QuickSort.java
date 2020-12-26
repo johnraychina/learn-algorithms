@@ -17,7 +17,7 @@ public class QuickSort {
         sort(a, 0, a.length - 1);
 
         show("--------------3-Way QuickSort-----------");
-        threeWayQuickSort(a, 0, a.length - 1);
+        //threeWayQuickSort(a, 0, a.length - 1);
     }
 
     public static <T extends Comparable<T>> void sort(T[] a, int lo, int hi) {

@@ -76,7 +76,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
     }
 
     //目的：从Left leaning red-black tree找到位置，插入后保证原来leaf leaning性质。
-    //关键实现1：dfs递归向下找到合适的位置插入
+    //关键实现1：compare+dfs递归向下找到合适的位置插入
     //关键实现2：rotate旋转
     //关键实现3：flip colors颜色翻转
     public Node put(Node node, Key key, Value value) {

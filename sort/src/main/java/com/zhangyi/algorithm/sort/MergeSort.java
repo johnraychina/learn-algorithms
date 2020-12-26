@@ -6,12 +6,11 @@ import static com.zhangyi.algorithm.sort.Utils.show;
 
 /**
  * 归并排序
- * <p>
- * 采用分而治之的思想，先拆分为2个子数组，分别排序，然后再将2个有序子数组合并为一个有序数组； 用递归的办法一直拆分到最后子数组只有2个或1个元素，简单比较合交换即可。
- * </p>
- * <p>
+ * <pre>
+ * 采用分而治之的思想，先拆分为2个子数组，分别排序，然后再将2个有序子数组合并为一个有序数组；
+ * 用递归的办法一直拆分到最后子数组只有2个或1个元素，简单比较合交换即可。
+ * </pre>
  * 问题：递归太多层影响执行速度 优化：拆分子数组到一定粒度就不再拆分（比如16个），用插入排序或者选择排序完成子数组的排序。
- * <p>
  * <p>
  * 问题：递归会使得堆栈层次太深，大的数组会Stack Overflow 优化：通过正向for循环计算拆分子数组
  *
@@ -23,14 +22,30 @@ public class MergeSort<T extends Comparable<T>> {
 
     public static void main(String[] args) {
         String[] array = "m e r g e s o r t e x a m p l e".split(" ");
+
+        // Top-Down自顶向下排序
         sort(array);
+        // 自底向上排序
+        sortBU(array);
     }
 
     public static <T extends Comparable<T>> void sort(T[] array) {
+        int N = array.length;
+        aux = new Comparable[N];
+        sort(array, 0, N - 1);
+    }
 
-        aux = new Comparable[array.length];
+    private static <T extends Comparable<T>> void sortBU(T[] array) {
+        //自底向上排序：排好小数组然后再合并
+        int N = array.length;
+        aux = new Comparable[N];
 
-        sort(array, 0, array.length - 1);
+        for (int sz = 1; sz < N; sz = sz + sz) {
+            for (int lo = 0; lo < N - sz; lo += sz + sz) {
+                merge(array, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1));
+            }
+        }
+
     }
 
     public static <T extends Comparable<T>> void sort(T[] array, int lo, int hi) {
