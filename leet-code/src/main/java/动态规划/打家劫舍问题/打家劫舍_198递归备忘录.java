@@ -1,4 +1,4 @@
-package 打家劫舍问题;
+package 动态规划.打家劫舍问题;
 
 /**
  * <pre>
@@ -29,7 +29,10 @@ package 打家劫舍问题;
  *
  * @author Zhang Yi
  */
-public class 打家劫舍_198递归解法 {
+public class 打家劫舍_198递归备忘录 {
+
+    private static int[] memo;
+
     public static int rob(int[] nums) {
         //不想触发报警：隔着房子偷窃
         //金额最大化
@@ -43,6 +46,11 @@ public class 打家劫舍_198递归解法 {
         //如果偷i号房，为了最大化金额，他会偷[0~i-2]内的房屋
         //状态转移：dp[i] = max{ dp[i-1] , dp[i-2] + nums[i]};
         int n = nums.length;
+        memo = new int[n];
+        for (int i = 0; i < n; i++) {
+            memo[i] = -1;
+        }
+
         return dp(nums, nums.length - 1);
     }
 
@@ -50,7 +58,12 @@ public class 打家劫舍_198递归解法 {
         if (current < 0) {
             return 0;
         }
-        return Math.max(dp(nums, current - 1), dp(nums, current - 2) + nums[current]);
+        if (memo[current] != -1) {
+            return memo[current];
+        }
+
+        memo[current] = Math.max(dp(nums, current - 1), dp(nums, current - 2) + nums[current]);
+        return memo[current];
     }
 
     public static void main(String[] args) {

@@ -22,6 +22,12 @@ public class QuickSort {
 
     public static <T extends Comparable<T>> void sort(T[] a, int lo, int hi) {
 
+        //思路：分界 + 递归
+
+        //将v= a[0] 作为分界值，找到分界值的位置j
+        //递归式地维护不变性条件：j的左边 <= v <= j的右边，即可达到整体有序。
+        //如何做：移动双指针start~end，必要时交换start与end的位置，使得 j的左边 <= v <= j的右边
+        //分别对左边和右边做同样的处理
         if (lo >= hi) { return; }
         int j = partition(a, lo, hi);
         sort(a, lo, j - 1);

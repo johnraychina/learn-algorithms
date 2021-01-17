@@ -1,4 +1,4 @@
-package 打家劫舍问题;
+package 动态规划.打家劫舍问题;
 
 /**
  * <pre>
@@ -29,22 +29,10 @@ package 打家劫舍问题;
  *
  * @author Zhang Yi
  */
-public class 打家劫舍_198动态规划 {
+public class 打家劫舍_198最简化 {
 
     public static int rob(int[] nums) {
-        //不想触发报警：隔着房子偷窃
-        //金额最大化
 
-        //动态规划解法
-        //目标：偷窃总金额
-        //状态：房屋号码i, 偷窃/不偷
-
-        //目标状态定义：dp[i] 表示小偷走到到第i号房时的总偷窃金额
-        //如果不偷i号房，为了最大化金额，他会偷[0~i-1]内的房屋
-        //如果偷i号房，为了最大化金额，他会偷[0~i-2]内的房屋
-        //状态转移：dp[i] = max{ dp[i-1] , dp[i-2] + nums[i]};
-        //初始条件：dp[0] = num[0] 只有一个房子
-        //dp[1] = max(num[0], num[1]) 2个房子中挑一个最大金额的c
         int n = nums.length;
         if (n == 0) {
             return 0;
@@ -54,14 +42,23 @@ public class 打家劫舍_198动态规划 {
             return Math.max(nums[0], nums[1]);
         }
 
-        int[] dp = new int[n];
-        dp[0] = nums[0];
-        dp[1] = Math.max(nums[0], nums[1]);
-
+        //int[] dp = new int[n];
+        //dp[0] = nums[0];
+        //dp[1] = Math.max(nums[0], nums[1]);
+        //for (int i = 2; i < n; i++) {
+        //    dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+        //}
+        //观察到状态i只与前2个状态相关，只需要记录并更新前两个状态即可
+        int i_2 = nums[0];
+        int i_1 = Math.max(nums[0], nums[1]);
+        int maxTotal = 0;
         for (int i = 2; i < n; i++) {
-            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+            maxTotal = Math.max(i_1, i_2 + nums[i]);
+            i_2 = i_1;
+            i_1 = maxTotal;
         }
-        return dp[n - 1];
+
+        return maxTotal;
     }
 
     public static void main(String[] args) {
