@@ -85,7 +85,7 @@ public class QuickSort {
         // - a[i] > v: exchange a[i] with a[gt], and decrement gt
         // - a[i] == v: increment both i
         T v = a[lo];
-        int i = lo;
+        int i = lo + 1;
         int lt = lo;
         int gt = hi;
 
