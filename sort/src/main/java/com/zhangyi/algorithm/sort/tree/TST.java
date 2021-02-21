@@ -46,10 +46,15 @@ public class TST<Value> {
         //System.out.println(tst.get("jump"));
 
         //keyWithPrefix
-        for (String key : tst.keyWithPrefix("qu")) {
-            System.out.println(key);
-        }
+        //for (String key : tst.keyWithPrefix("qu")) {
+        //    System.out.println(key);
+        //}
+
+        //longestPrefixOf
+        System.out.println(tst.longestPrefixOf("fox jump over brown bear"));
+        System.out.println(tst.longestPrefixOf("fox"));
     }
+
 
     public void put(String key, Value val) {
         root = put(key, val, root, 0);
@@ -178,13 +183,45 @@ public class TST<Value> {
 
     }
 
-    public Iterable<String> keysThatMatch(String pattern) {
-        return null;
-    }
+    //这个特性非常有用，很多场景都会用到最长匹配原则
 
+    /**
+     * 寻找与query字符串匹配的最长前缀
+     * <pre>
+     * Find longest key in sympble table that is a prefix of query string.
+     * - Search for query string.
+     * - Keep track of longest key encountered.
+     * </pre>
+     *
+     * @param query
+     * @return
+     */
     public String longestPrefixOf(String query) {
-        //寻找前缀为query的最长字符串
-        return null;
+
+        if (query == null) {
+            throw new IllegalArgumentException("calls longestPrefixOf() with null argument");
+        }
+        if (query.length() == 0) { return null; }
+
+        //逻辑和get有点像，要做递归查找
+        //不同的地方是：
+        //1. 遇到null link，返回匹配路径上的字符串
+        //2. 匹配结束时（长度全匹配），返回路径上有value的最长路径字符串。
+        Node x = root;
+        int d = 0; //匹配位置
+        int keyIdx = 0; //有key的匹配位置
+        while (x != null && d < query.length()) {
+            char c = query.charAt(d);
+            if (c < x.c) { x = x.left; } else if (c > x.c) { x = x.right; } else {
+                d++;
+                if (x.value != null) {
+                    keyIdx = d; //由于substring是左闭右开，所以d++之后再赋值过来正好抵消
+                }
+                x = x.mid;
+            }
+        }
+
+        return query.substring(0, keyIdx);
     }
 
     public static class Node {

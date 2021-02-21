@@ -68,15 +68,23 @@ public class TrieST<Value> {
         tst.put("bread", 5);
         tst.put("quick", 6);
         tst.put("query", 7);
+        tst.put("she", 8);
+        tst.put("shell", 9);
+        tst.put("shell sort", 10);
 
         //get
         //System.out.println(tst.get("fool"));
         //System.out.println(tst.get("jump"));
 
         //keyWithPrefix
-        for (String key : tst.keyWithPrefix("fo")) {
-            System.out.println(key);
-        }
+        //for (String key : tst.keyWithPrefix("fo")) {
+        //    System.out.println(key);
+        //}
+
+        //longestPrefixOf
+        System.out.println(tst.longestPrefixOf("she"));
+        System.out.println(tst.longestPrefixOf("shells"));
+        System.out.println(tst.longestPrefixOf("shell sort algorithm"));
     }
 
     public void put(String key, Value val) {
@@ -116,7 +124,12 @@ public class TrieST<Value> {
     }
 
     public Value get(String key) {
-        return (Value)get(key, root, 0);
+        Node node = get(key, root, 0);
+        if (node != null) {
+            return (Value)node.value;
+        } else {
+            return null;
+        }
     }
 
     public Node get(String key, Node x, int d) {
@@ -208,6 +221,53 @@ public class TrieST<Value> {
         for (int i = 0; i < R; i++) {
             collect(n.next[i], prefix + ((char)i), list);
         }
+    }
+
+    /**
+     * Find longest key in symbol table that is a prefix of query string.
+     * <ul>
+     * <li>Search for query string.</li>
+     * <li>Keep track of longest key encountered.</li>
+     * </ul>
+     *
+     * @param query
+     * @return
+     */
+    public String longestPrefixOf(String query) {
+        //递归写法
+        //int keyIdx = search(root, query, 0, 0);
+        //return query.substring(0, keyIdx);
+
+        //非递归写法
+        Node x = root;
+        int d = 0; //匹配位置
+        int keyIdx = 0; //key匹配位置
+        //循环结束条件
+        while (d < query.length() && x != null) {
+            if (x.value != null) {
+                keyIdx = d;
+            }
+
+            //匹配，更新迭代条件: d++, x = x.next[c]
+            char c = query.charAt(d);
+            x = x.next[c];
+            d++;
+        }
+
+        //完全匹配的情况下，前面while长度判断先退出，没有更新len，需要做一下兜底
+        if (x != null && x.value != null) {
+            keyIdx = d;
+        }
+        return query.substring(0, keyIdx);
+    }
+
+    //递归向下查找最长匹配前缀
+    private int search(Node x, String query, int d, int length) {
+        if (x == null) { return length; }
+        if (x.value != null) { length = d; }
+        if (d == query.length()) { return length; }
+        char c = query.charAt(d);
+        return search(x.next[c], query, d + 1, length);
     }
 
     public static class Node {
