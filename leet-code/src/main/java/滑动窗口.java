@@ -1,5 +1,3 @@
-package 滑动窗口;
-
 /**
  * <pre>
  * 76.最小覆盖子串（困难）
@@ -26,11 +24,6 @@ package 滑动窗口;
  */
 public class 滑动窗口 {
 
-    /**
-     * @param s
-     * @param t
-     */
-    /*
     public void slidingWindow(String s, String t) {
 
         //维护一个窗口，不断滑动，然后判断和更新
@@ -39,7 +32,7 @@ public class 滑动窗口 {
 
         //need表示需要凑齐的目标字符和对应的字符数，window表示当前[left, right)左闭右开窗口字符和对应数量
         //对窗口滑动时，需要更新他们
-        Map<Character, Integer> need, window;
+        int[] window = {left, right};
 
         while (right < s.length()) {
 
@@ -53,7 +46,7 @@ public class 滑动窗口 {
             System.out.printf("window: [%d, %d)\n", left, right);
 
             //如果窗口需要收缩
-            while (window need shrink) {
+            while (needShrink(window)) {
                 //d 是即将移出窗口的字符
                 char d = s.charAt(left);
                 //左移窗口
@@ -63,7 +56,11 @@ public class 滑动窗口 {
         }
 
     }
-    */
+
+    public boolean needShrink(Object window) {
+        return true;
+    }
+
     public static void main(String[] args) {
         Integer count = 0;
     }
