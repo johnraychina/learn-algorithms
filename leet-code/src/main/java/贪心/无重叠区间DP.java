@@ -1,4 +1,4 @@
-package 每日一题;
+package 贪心;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -21,7 +21,7 @@ import java.util.Comparator;
  *
  * @author Zhang Yi
  */
-public class 无重叠区间 {
+public class 无重叠区间DP {
 
     public static void main(String[] args) {
         int[][] intervals1 = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};

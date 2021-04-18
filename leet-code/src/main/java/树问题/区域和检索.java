@@ -1,4 +1,4 @@
-package 线段树;
+package 树问题;
 
 /**
  * <pre>
