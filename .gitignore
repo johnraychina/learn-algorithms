@@ -1,6 +1,7 @@
 # IDE files
 *.iml
 .idea
+**/*.iml
 
 # Compiled class file
 *.class
