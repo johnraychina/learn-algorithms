@@ -25,7 +25,6 @@ public class LongestPalindrome {
 
         String ans = "";
         for (int len = 0; len < n; len++) {
-            boolean hasPalindrome = false;
             for (int i = 0; i + len < n; i++) { //这里注意边界条件，j=i+len < n
                 int j = i + len;
 
