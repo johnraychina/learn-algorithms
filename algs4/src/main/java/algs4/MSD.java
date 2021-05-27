@@ -69,10 +69,11 @@ public class MSD {
     private static void sort(String[] a, int lo, int hi, int d, String[] aux) {
 
         // cutoff to insertion sort for small subarrays
-        if (hi <= lo + CUTOFF) {
-            insertion(a, lo, hi, d);
-            return;
-        }
+        if (hi <= lo) return;
+//        if (hi <= lo + CUTOFF) {
+//            insertion(a, lo, hi, d);
+//            return;
+//        }
 
         // compute frequency counts
         int[] count = new int[R+2];
@@ -216,7 +217,9 @@ public class MSD {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        String[] a = StdIn.readAllStrings();
+//        String[] a = StdIn.readAllStrings();
+        String[] a = new String[]{"Alice ", "Bruce ", "Nilson", "Geogia", "Brad  ", "Adam  ", "Bob   "};
+
         int n = a.length;
         sort(a);
         for (int i = 0; i < n; i++)

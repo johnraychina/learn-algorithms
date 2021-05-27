@@ -21,14 +21,13 @@
         <module>arithmetic</module>
         <module>basis</module>
         <module>dynamic-programming</module>
-        <module>graph</module>
-        <module>interview</module>
-        <module>leet-code</module>
         <module>randomization</module>
-        <module>search</module>
-        <module>sort</module>
         <module>string-algs</module>
         <module>union-find</module>
+        <module>interview</module>
+        <module>leet-code</module>
+        <module>sort</module>
+        <module>search</module>
     </modules>
 
     <build>
