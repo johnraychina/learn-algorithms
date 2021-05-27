@@ -33,7 +33,7 @@ public class LSDRadixSort {
             //count key
             int[] count = new int[R + 1];
             for (int i = 0; i < n; i++) {
-                count[a[i].charAt(d)]++;
+                count[a[i].charAt(d) + 1]++;
             }
             //accumulate count
             for (int r = 0; r < R; r++) {
