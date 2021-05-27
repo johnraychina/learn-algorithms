@@ -3,7 +3,6 @@ package com.zhangyi.graph;
 import algs4.DirectedEdge;
 import algs4.EdgeWeightedDigraph;
 import algs4.IndexMinPQ;
-import sun.tools.tree.DoubleExpression;
 
 /**
  * <pre>

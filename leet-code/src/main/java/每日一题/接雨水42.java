@@ -15,10 +15,46 @@ public class 接雨水42 {
     public static void main(String[] args) {
 //        int[] height = new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
         int[] height = new int[]{2, 0, 2};
-        System.out.println(trap(height));
+//        System.out.println(trap_2pointer(height));
+        System.out.println(trap_dp(height));
+    }
+
+
+    // todo 单调栈
+    public static int trap_mono_stack(int[] height) {
+        return 0;
     }
 
     // 动态规划：计算每个位置的水量
+    public static int trap_dp(int[] height) {
+        //经过观察，发现每个位置i对应水量= min(左边最高柱子，右边最高柱子) - height[i]
+        //leftMax[i]表示i及其左边的位置中height最大值
+        //rightMax[i]表示i及其右边位置中height最大值
+        // leftMax[i] = max(leftMax[i-1], height[i]), 边界[1, n-1]
+        // rightMax[i] = max(rightMax[i+1], height[i]), 边界：[0, n-2]
+        if (height.length < 3) {
+            return 0;
+        }
+        int n = height.length;
+        int[] leftMax = new int[n];
+        leftMax[0] = height[0];
+        for (int i = 1; i < n; i++) {
+            leftMax[i] = Math.max(leftMax[i - 1], height[i]);
+        }
+
+        int[] rightMax = new int[n];
+        rightMax[n-1] = height[n-1];
+        for (int i = n - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(rightMax[i + 1], height[i]);
+        }
+
+        int total = 0;
+        for (int i = 0; i < n; i++) {
+            total += Math.min(leftMax[i], rightMax[i]) - height[i];
+        }
+
+        return total;
+    }
 
     //双指针+滑动窗口
     // 经过观察，雨水多了会溢出来，所以决定水量的
@@ -35,7 +71,7 @@ public class 接雨水42 {
     // 在p_left右侧找到第一个大于等于它的柱子p_left_new，计算雨水量，加入总量，更新p_left，没找到 p_left则停止向右移动，
     // p_right向左移动到第一个大于等于它的柱子p_right_new，计算雨水量，加入总量，更新p_right，没找到 p_right则停止向右移动，
     // 如果  p_left, p_right 相遇（在最高峰）则停止计算
-    public static int trap(int[] height) {
+    public static int trap_2pointer(int[] height) {
         int n = height.length;
         int p_left = 0;
         int p_right = n - 1;
