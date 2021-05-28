@@ -12,7 +12,11 @@ package 每日一题;
  * @hint 双指针
  */
 public class 盛水最多的容器11 {
-    public int maxArea(int[] height) {
+
+    public static void main(String[] args) {
+        System.out.println(maxArea(new int[]{1,8,6,2,5,4,8,3,7}));
+    }
+    public static int maxArea(int[] height) {
 
 
         //从暴力求解启发出动态规划
@@ -21,24 +25,13 @@ public class 盛水最多的容器11 {
         //水量 = 宽度 * 高度
         // 高度=左右两边的较小值，最宽的[0:n-1]不能保证最大水量，因为高度不是最高
         // 所以需要牺牲宽度，换取高度，从而使得整体最优
-        // 双指针遍历左右两边，缩小宽度，必须确保整体高度变高，时间复杂度O(n)
+        // 双指针遍历左右两边，向中间缩小，得到更高的，时间复杂度O(n)
+        // 判断高，or 判断面积变大？如果片面值判断高，会得到最高两个柱子，但是水容量不一定最大
+        // 应该判断面积
         int maxArea = 0;
         int left = 0;
         int right = height.length - 1;
-        while (left < right) {
-            //固定右边，遍历左边，找到较大的值，再移动左边界
-            int l = left + 1;
-            //todo
-            while (height[left] < height[l]) {
-                left++;
-                maxArea = Math.max(maxArea, Math.min(left, right) * (right - left));
-            }
-            if (height[right] < height[right - 1]) {
-                right--;
-                maxArea = Math.max(maxArea, Math.min(left, right) * (right - left));
-            }
-
-        }
+        //todo
 
         return maxArea;
     }

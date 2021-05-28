@@ -1,11 +1,11 @@
 TestJustification.class
 ShortestPath.class
-EditDistance.class
-OnesAndZeros.class
-LongestIncrementalSubstring.class
-Fibonacci.class
 LeastCashNumber.class
 Blackjack.class
+EditDistance.class
+OnesAndZeros.class
 CheapestPrice.class
+LongestIncrementalSubstring.class
+Fibonacci.class
 LongestPalindrome.class
 LongestCommonSubstring.class
