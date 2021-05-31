@@ -18,4 +18,10 @@ public class 常用位运算 {
         // 仅将第n位置为0     x & (~(1<< n))
     }
 
+    public static void exch(int a, int b) {
+        a = a ^ b; // a^b -> a
+        b = a ^ b; // a^b^b = a ->b
+        a = a ^ b; // a^b^a = b -> a
+        System.out.printf("a=%d, b=%d \n",a, b);
+    }
 }

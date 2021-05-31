@@ -26,12 +26,23 @@ public class 盛水最多的容器11 {
         // 高度=左右两边的较小值，最宽的[0:n-1]不能保证最大水量，因为高度不是最高
         // 所以需要牺牲宽度，换取高度，从而使得整体最优
         // 双指针遍历左右两边，向中间缩小，得到更高的，时间复杂度O(n)
-        // 判断高，or 判断面积变大？如果片面值判断高，会得到最高两个柱子，但是水容量不一定最大
-        // 应该判断面积
+        // 何时向右移动，何时向左移动？ 两个柱子的min值决定了水量，所以移动较小的那个
         int maxArea = 0;
         int left = 0;
         int right = height.length - 1;
-        //todo
+
+        while (left < right) {
+
+            int area = Math.min(height[left], height[right]) * (right - left);
+            if (area > maxArea) {
+                maxArea = area;
+            }
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
 
         return maxArea;
     }

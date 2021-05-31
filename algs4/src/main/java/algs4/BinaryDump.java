@@ -52,7 +52,7 @@ public class BinaryDump {
      *
      * @param args the command-line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String{] args) {
         int bitsPerLine = 16;
         if (args.length == 1) {
             bitsPerLine = Integer.parseInt(args[0]);
