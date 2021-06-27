@@ -4,14 +4,14 @@ package 基本数据结构;
  * @author Zhang Yi
  */
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
-    ListNode() {}
+    public ListNode() {}
 
-    ListNode(int val) { this.val = val; }
+    public ListNode(int val) { this.val = val; }
 
-    ListNode(int val, ListNode next) {
+    public ListNode(int val, ListNode next) {
         this.val = val;
         this.next = next;
     }

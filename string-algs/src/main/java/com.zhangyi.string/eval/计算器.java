@@ -84,11 +84,10 @@ public class 计算器 {
         String operator = operators.pop();
         int right = numbers.pop();
         int left = numbers.pop();
-        if (operator.equals("+")) { numbers.push(left + right); } else if (operator.equals("-")) {
-            numbers.push(left - right);
-        } else if (operator.equals("*")) { numbers.push(left * right); } else if (operator.equals("/")) {
-            numbers.push(left / right);
-        }
+        if (operator.equals("+")) { numbers.push(left + right); }
+        else if (operator.equals("-")) { numbers.push(left - right); }
+        else if (operator.equals("*")) { numbers.push(left * right); }
+        else if (operator.equals("/")) { numbers.push(left / right); }
     }
 
     private boolean isOperator(char token) {

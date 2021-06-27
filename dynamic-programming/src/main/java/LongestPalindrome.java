@@ -1,4 +1,6 @@
 /**
+ * 最长回文串
+ *
  * @author Zhang Yi
  */
 public class LongestPalindrome {

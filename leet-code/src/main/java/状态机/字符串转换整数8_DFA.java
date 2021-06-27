@@ -1,4 +1,4 @@
-package 整数反转;
+package 状态机;
 
 import java.util.HashMap;
 import java.util.Map;
