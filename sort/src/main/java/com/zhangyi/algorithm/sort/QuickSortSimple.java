@@ -58,7 +58,7 @@ public class QuickSortSimple {
             }
             //find item on the right to swap
             while (less(a[lo], a[--j])) {
-                //if (j == lo) break; //这里不是必须的，因为如果--j之后，j==ho时, less不成立跳出循环，轮不到这个if判断。
+                //if (j == lo) break; //这里不是必须的，因为如果--j之后，j==lo时, less不成立跳出循环，轮不到这个if判断。
             }
 
             //check if the pointers cross

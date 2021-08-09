@@ -6,21 +6,28 @@ package 分而治之;
 public class x的n次方50 {
 
     public static void main(String[] args) {
-        System.out.println(myPow_recursion(2, 20));
+        System.out.println(myPow(2, -2147483648));
     }
 
-    public static double myPow_loop(double x, int n) {
+    public static double myPow(double x, int n) {
+        long N = n; //极端情况：n= Integer.MIN_VALUE
+        return N >= 0 ? myPow_loop(x, N) : 1.0 / myPow_loop(x, -N);
+    }
 
+    public static double myPow_loop(double x, long n) {
+        double ans = 1.0;
         //结束条件: n == 0
-        while (n != 0) {
-
+        double x_contribute = x;
+        while (n > 0) {
+            //最低位为1，对应 , x^n = x^(1 +...2^K),  令 x_contribute = 2^k, k从1迭代到K
+            if (n % 2 == 1) {
+                ans *= x_contribute;
+            }
+            x_contribute *= x_contribute;
             //下次循环: n = n / 2
             n >>= 1;
         }
-
-        //todo
-        return 0;
-
+        return ans;
     }
 
     public static double myPow_recursion(double x, int n) {

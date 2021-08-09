@@ -37,63 +37,8 @@ public class 最长有效括号32 {
     //思路3：看到最长序列就想到用动态规划或者贪心算法
     // () (  () (())
     public static int longestValidParentheses_dp(String s) {
-        //target 最长有效括号
-        //state 开始位置，结束位置，长度
-        //sub-problem 子问题: dp[i]是以i结尾的最长有效括号长度
-        //有效的字串以)结尾，以(结尾的dp值一定是0，我们只需要求解)在dp数组中对应位置的值。
-        //state transfer  状态转移:
-        // 形如 “……()” if s[i-1]=( & s[i]=) then dp[i] = dp[i-2] + 2
-        // 形如 “……((……))”: s[i - dp[i - 1] - 1] = (
-        // 那么内部字串基础上加二： dp[i-1] + 2
-        // 然后再加前面的字串长度：dp[i - dp[i-1] - 2]
-        //dp[i]= dp[i−1] + 2 + dp[i − dp[i−1] − 2]
-        int maxLen = 0;
-        int[] dp = new int[s.length()];
-        for (int i = 0; i < s.length(); i++) {
-            //todo
-        }
-
-        return 0;
+         //dp 状态定义：以)结尾的最长有效括号长度
+        return -1;
     }
 
-
-
-    public static int longestValidParentheses_brutal(String s) {
-        int len = s.length();
-        len = len & (len - 1); //括号成对出现，处理成偶数
-
-        //try each length
-        while (len >= 2) {
-            //starting from i, check if it is valid
-            for (int i = 0; i <= s.length() - len; i++) {
-                if (isValid(s, i, len)) {
-                    return len;
-                }
-            }
-
-            //next
-            len -= 2;
-        }
-
-        return len;
-    }
-
-    public static boolean isValid(String s, int i, int len) {
-        Stack<Character> stack = new Stack<>();
-        //push j in [i~i+len)
-        for (int j = i; j < i + len; j++) {
-            char c = s.charAt(j);
-            if (c == '(') {
-                stack.push(c);
-            } else {
-                if (!stack.isEmpty()) {
-                    stack.pop();
-                } else {
-                    return false;
-                }
-            }
-        }
-
-        return stack.isEmpty();
-    }
 }
