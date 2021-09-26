@@ -28,6 +28,7 @@
         <module>leet-code</module>
         <module>sort</module>
         <module>search</module>
+        <module>graph</module>
     </modules>
 
     <build>
