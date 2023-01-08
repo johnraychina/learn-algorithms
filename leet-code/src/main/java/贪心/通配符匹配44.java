@@ -1,110 +1,137 @@
 package 贪心;
 
 /**
- * @author Zhang Yi
+ * 44. 通配符匹配
+ * 给定一个字符串 (s) 和一个字符模式 (p) ，实现一个支持 '?' 和 '*' 的通配符匹配。
+ * <p>
+ * '?' 可以匹配任何单个字符。
+ * '*' 可以匹配任意字符串（包括空字符串）。
+ * 两个字符串完全匹配才算匹配成功。
+ * <p>
+ * 说明:
+ * <p>
+ * s 可能为空，且只包含从 a-z 的小写字母。
+ * p 可能为空，且只包含从 a-z 的小写字母，以及字符 ? 和 *。
+ * <p>
+ * 思路：
+ * 1. 暴力递归，超时了
+ * 2. 动态规划：如果把暴力递归的执行轨迹画出一个图，那就是一棵树，子树之间存在重复之处，可以用动态规划构造子树之间的关系，提高性能。
+ * 3. 贪心算法：
  */
 public class 通配符匹配44 {
-}
-//给定一个字符串 (s) 和一个字符模式 (p) ，实现一个支持 '?' 和 '*' 的通配符匹配。
-//
-// '?' 可以匹配任何单个字符。
-//'*' 可以匹配任意字符串（包括空字符串）。
-//
-//
-// 两个字符串完全匹配才算匹配成功。
-//
-// 说明:
-//
-//
-// s 可能为空，且只包含从 a-z 的小写字母。
-// p 可能为空，且只包含从 a-z 的小写字母，以及字符 ? 和 *。
-//
-//
-// 示例 1:
-//
-// 输入:
-//s = "aa"
-//p = "a"
-//输出: false
-//解释: "a" 无法匹配 "aa" 整个字符串。
-//
-// 示例 2:
-//
-// 输入:
-//s = "aa"
-//p = "*"
-//输出: true
-//解释: '*' 可以匹配任意字符串。
-//
-//
-// 示例 3:
-//
-// 输入:
-//s = "cb"
-//p = "?a"
-//输出: false
-//解释: '?' 可以匹配 'c', 但第二个 'a' 无法匹配 'b'。
-//
-//
-// 示例 4:
-//
-// 输入:
-//s = "adceb"
-//p = "*a*b"
-//输出: true
-//解释: 第一个 '*' 可以匹配空字符串, 第二个 '*' 可以匹配字符串 "dce".
-//
-//
-// 示例 5:
-//
-// 输入:
-//s = "acdcb"
-//p = "a*c?b"
-//输出: false
-// Related Topics 贪心算法 字符串 动态规划 回溯算法
-// 👍 665 👎 0
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public boolean isMatch(String s, String p) {
-        return isMatch(s, 0, p, 0);
-    }
-
-    public boolean isMatch(String s, int i, String p, int j) {
-        //模式p中的*号，需要向右多看一位来决定如何匹配，充当一个"卡子"的作用
-        //遍历s 和 p进行匹配
-        while (i < s.length() && j < p.length()) {
-
-            //todo
+    public static boolean isMatch(String s, String p) {
+        if (s.equals(p)) {
+            return true;
         }
 
-        return i == s.length() && j == p.length();
+        // dp[i][j]: sub problem whether  string [0~i) match pattern [0~j)
+
+        // 状态转移方程
+        // p[j] is a-z; dp[i][j] = dp[i-1][j-1] && s[i - 1] == p[j - 1],
+        // p[j] is ?:   dp[i][j] = dp[i-1][j-1]
+        // p[j] is *:   dp[i][j] = dp[i][j-1] 匹配一个s字符 || dp[i-1][j]  *号匹配0个s字符
+
+        // 初始化
+        // dp[i][j] 默认为false，只需更新true的。
+        // init first one dp[0 ][0 ] : true
+        // init first col dp[..][0 ] : false
+        // init first row dp[0 ][..] : dp[0][j] = true where pattern 0~j are *, else false
+
+        boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
+        dp[0][0] = true;
+
+        for (int j = 1; j <= p.length(); j++) {
+            if (p.charAt(j - 1) == '*') {
+                dp[0][j] = true;
+            } else {
+                break;
+            }
+        }
+
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 1; j <= p.length(); j++) {
+                if (p.charAt(j - 1) == '*') {
+                    dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+                } else if (p.charAt(j - 1) == '?' || (s.charAt(i - 1) == p.charAt(j - 1))) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+            }
+        }
+
+        return dp[s.length()][p.length()];
+
+//        return recursiveMatch(s, 0, p, 0);
     }
-    //
-    //public boolean isMatch(String s, int i, String p, int j) {
-    //    //模式p中的*号，需要向右多看一位来决定如何匹配，充当一个"卡子"的作用
-    //    //遍历s 和 p进行匹配
-    //    while (i < s.length() && j < p.length()){
-    //
-    //        char c = p.charAt(j);
-    //
-    //        if (c == '?' || c == s.charAt(i)) {
-    //            j++; //匹配上了，i和j都要向右移动
-    //        } else if (c == '*') { //模式字符是*，向右多看一位，递归处理
-    //            j++;
-    //            while (i < s.length() && s.charAt(i) != p.charAt(j)) {
-    //                i++;
-    //                if(isMatch(s, i, p, j)) {
-    //                    return true;
-    //                }
-    //            }
-    //        }
-    //        else {
-    //            return false;
-    //        }
-    //    }
-    //
-    //    return i == s.length() && j == p.length();
-    //}
+
+    /**
+     * Match string s with pattern s recursively.
+     *
+     * @param s      a string
+     * @param sIndex start match at sIndex
+     * @param p      as pattern
+     * @param pIndex start match at pIndex
+     * @return is match
+     */
+    public static boolean recursiveMatch(String s, int sIndex, String p, int pIndex) {
+
+        // edge case: sIndex out of bound, pIndex out of bound
+        if (sIndex >= s.length()) {
+            // both end, match
+            if (pIndex >= p.length()) {
+                return true;
+            }
+
+            // s end, p not end, increase pattern index, go on match
+            if (p.charAt(pIndex) == '*') {
+                return recursiveMatch(s, sIndex, p, pIndex + 1);
+            } else {
+                return false;
+            }
+        } else if ((pIndex >= p.length())) {
+            // s end, p not end, not match
+            return false;
+        }
+
+        switch (p.charAt(pIndex)) {
+            case '*':
+                // if * is the last pattern char, then match
+                if (pIndex == p.length() - 1) {
+                    return true;
+                }
+
+                // else iterate all cases: sIndex + 0, 1, 2, ... end
+                boolean anyMatch = false;
+                while (sIndex < s.length()) {
+                    anyMatch = anyMatch || recursiveMatch(s, sIndex, p, pIndex + 1);
+                    sIndex++;
+                }
+                return anyMatch;
+            case '?':
+                return recursiveMatch(s, sIndex + 1, p, pIndex + 1); // matched, match next char
+            default:
+                if (s.charAt(sIndex) == p.charAt(pIndex)) {
+                    return recursiveMatch(s, sIndex + 1, p, pIndex + 1);
+                } else {
+                    return false;
+                }
+        }
+    }
+
+    public static void main(String[] args) {
+        String s = "aa";
+        String p = "*";
+//        String s = "abdceb";
+//        String p = "*a*b";
+
+//        String s = "acdcb";
+//        String p = "a*c?b";
+
+//        String s = "acdceb";
+//        String p = "a*c?b";
+
+        System.out.println(isMatch(s, p));
+        System.out.println("end");
+    }
 }
-//leetcode submit region end(Prohibit modification and deletion)
+
+
