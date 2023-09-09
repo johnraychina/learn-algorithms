@@ -1,0 +1,76 @@
+
+Welcome to Week 1 of "Analysis of Algorithms" (aka part I of "Analytic
+Combinatorics"). 
+
+The syllabus for COS 488, the Spring 2021 Princeton offering, are on the 
+course homepage https://www.cs.princeton.edu/courses/archive/spring21/cos488/
+
+This course is entirely online, with lectures and assignments on
+this webpage: https://aofa.cs.princeton.edu/online/. 
+To get started, watch Lecture 0, which 
+gives an overview of the course and then describes a case in point that 
+illustrates the practical relevance of the course material. 
+To watch it, click on the "0. Cardinality Estimation" link in the 
+"Lecture Videos" column, which will take you to the CUvids platform 
+that serves the videos. Click on the "Need to subscribe to all modules?" 
+button and enter the code aofapusp2022 to get free access to all the videos
+for 2022.
+
+We will use the Ed discussion online forum to handle questions and answers 
+and the codePost platform to handle submissions and grading. I'll send
+more details about them tomorrow.
+
+To keep things synchronized, I'll send an "official" e-mail each week 
+(normally on Friday) to people registered in the course
+specifying the lectures and assignments for the week. I'll also post 
+each of these e-mails in an archive on Ed. This is the first such e-mail. 
+
+Each lecture for the first half of the course corresponds to a chapter
+in "An Introduction to the Analysis of Algorithms" (2nd edition), and
+everyone is encouraged to study the corresponding chapter in
+conjunction with the lectures. The coverage in the book is somewhat
+encyclopedic, so people are only expected to turn to the
+material associated with what's in the lecture, perhaps scanning
+through the rest to see what's there and perhaps find something else
+of interest.
+
+We begin our course with an overview of the use of the scientific
+method for studying algorithm performance, one of the motivating
+applications for analytic combinatorics.
+
+----------
+Lecture 1: Analysis of Algorithms. We begin by considering
+historical context and motivation for the scientific study of
+algorithm performance. Then we consider a classic example that
+illustrates the key ingredients of the process: the analysis of
+Quicksort. The lecture concludes with a discussion of some resources
+that you might find useful during this course.  
+----------
+
+Slide 45 of the lecture (“Assignments for next lecture”) is a typical
+ending of each online lecture. Since we are going through the material
+at a rather quick pace, we do not expect that you will complete all of
+the suggested activities, and we will abridge and fully specify the
+“problem sets” that you must submit for grading.
+
+Your assignment for this week (a short one, to get the ball rolling),
+due at 11:59PM on 
+     Thursday, January 27, 2022,
+is to write up and submit solutions to 
+     Exercises 1.14 and 1.16 
+in "Analysis of Algorithms" (second edition). Please note the changes
+specified on the booksite (and the errata page). Generally,
+you can find the most up-to-date version of each exercise by clicking
+on the links in this e-mail or in the "Weekly Assignment" tab on 
+the "Online Course Materials" page.
+
+Please get in the habit of checking the "Errata" tab on the sidebar, as
+typos/errors in the text and slides are sometimes critical in assigned
+problems. Errata are also marked with yellow notes in the slide .pdfs.
+(These do not appear in the videos yet.) Please report any errors that you 
+might find that are not listed.
+
+Submit your solutions via codePost as files named “AofA1-Q1.pdf" and “AofA1-Q2.pdf".
+
+RS
+

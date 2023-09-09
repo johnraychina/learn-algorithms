@@ -1,0 +1,28 @@
+Welcome to "Introduction to Analytic Combinatorics"
+
+The syllabus for COS 488, the Spring 2022 Princeton offering, are on the 
+course homepage https://www.cs.princeton.edu/courses/archive/spring22/cos488/
+
+This course is entirely online, with lectures and assignments on
+this webpage: https://aofa.cs.princeton.edu/online/. 
+If you want to get an early start, you can watch Lecture 0, which 
+gives an overview of the course and then describes a case in point that 
+illustrates the practical relevance of the course material. 
+To watch it, click on the "0. Cardinality Estimation" link in the 
+"Lecture Videos" column, which will take you to the CUvids platform 
+that serves the videos. Login using your Princeton credentials 
+the code "aofapusp2022" to get free access to all the videos
+for 2022.
+
+To keep things synchronized, I'll send an e-mail each week (normally on Friday)
+describing the lectures and assignments for the week. The first such e-mail 
+will come on the first day of classes, next Monday.
+
+We will use the Ed discussion online forum to handle questions and answers 
+and the codePost system to handle submissions and grading. You'll be registered
+on these platforms soon.
+
+If you know someone who may be interested in shopping the course,
+feel free to  pass on this information.
+
+RS

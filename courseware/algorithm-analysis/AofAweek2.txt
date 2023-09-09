@@ -1,0 +1,46 @@
+Welcome to Week 2 of Analysis of Algorithms. The lectures for this
+week survey basic mathematical tools that have been used for
+scientific studies for centuries and are still effective for the
+analysis of algorithms.
+
+---------- 
+Lecture 2: Recurrences. We begin the course with an
+overview of recurrence relations, which provide us with a direct
+mathematical model for the analysis of algorithms.  We finish by
+examining the fascinating oscillatory behavior of the
+divide-and-conquer recurrence corresponding to the mergesort algorithm
+and the general "master theorem" for related recurrences.
+
+Lecture 3: Generating Functions. Since the 17th century, scientists
+have been using generating functions to solve recurrences, so we
+continue with an overview of generating functions, emphasizing their
+utility in solving problems like counting the number of binary trees
+with N nodes.  
+----------
+
+Your assignment for this week, due at 11:59PM on 
+     Thursday, February 3, 2022
+is to write up and submit solutions to 
+     Exercises 2.13, 2.17, 3.20, and 3.28 
+in "Analysis of Algorithms" (second edition). Please note that
+the booksite corrects an error in 2.17 in the book that was discovered
+by students during an earlier offering of this course. 
+After solving these problems, read the slides in RoadMap.pdf.
+Starting this week, you must also create and submit a question (with
+answer) on the week's material, suitable for use as an assessment
+in this course. RoadMap.pdf gives some examples. 
+These questions will count for 10% of your grade.
+
+Finally RoadMap.pdf gives pointers to three movies for your pandemic-viewing
+enjoyment that relate strongly to the material in this course.
+
+Submit files named
+  “AofA2-Q1.pdf"
+  “AofA2-Q2.pdf"
+  "AofA2-Q3.pdf"
+  “AofA2-Q4.pdf"
+  “AofA2-QQ.pdf"
+via codePost.
+
+
+RS

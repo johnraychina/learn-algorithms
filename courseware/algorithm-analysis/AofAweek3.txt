@@ -1,0 +1,32 @@
+
+Welcome to Week 3 of Analysis of Algorithms. The lecture for this week
+introduces classical approximation methods, which are one key to 
+understanding our ability to derive concise and precise descriptions of
+seemingly-complicated functions that arise in the analysis of algorithms.
+
+---------- 
+Lecture 4: Asymptotics. Exact answers are often cumbersome, so we next
+consider a scientific approach to developing approximate answers that,
+again, mathematicians and scientists have used for centuries.
+---------- 
+
+Your assignment for this week, due at 11:59PM on 
+     Thursday, February 10, 2022
+is to write up and submit solutions to 
+     Exercises 4.9, 4.23, 4.38, and 4.71 
+in "Analysis of Algorithms" (second edition). There is an error in 4.71
+in the text. The version on the booksite is corrected (and simplified).
+
+Also, as mentioned last week, you need to submit a question (with
+answer) on the week's material, suitable for use as an assessment
+in this course as a part of each assignment from now on.
+
+Submit files named
+  “AofA3-Q1.pdf"
+  “AofA3-Q2.pdf"
+  "AofA3-Q3.pdf"
+  “AofA3-Q4.pdf"
+  “AofA3-QQ.pdf"
+via codePost.
+
+RS
